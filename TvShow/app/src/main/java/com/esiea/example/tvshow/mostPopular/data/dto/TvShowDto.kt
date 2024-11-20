@@ -1,9 +1,10 @@
 package com.esiea.example.tvshow.mostPopular.data.dto
 
 
+import com.esiea.example.tvshow.mostPopular.domain.model.TvShow
 import com.google.gson.annotations.SerializedName
 
-data class TvShow(
+data class TvShowDto(
     @SerializedName("country")
     val country: String,
     @SerializedName("end_date")
@@ -23,3 +24,15 @@ data class TvShow(
     @SerializedName("status")
     val status: String
 )
+
+fun TvShowDto.toTvShow():TvShow{
+    return TvShow(
+        country = country,
+        id=id,
+        imageThumbnailPath = imageThumbnailPath,
+        name = name,
+        startDate = startDate,
+        permalink = permalink
+    )
+}
+

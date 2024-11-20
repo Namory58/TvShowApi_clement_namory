@@ -1,6 +1,7 @@
 package com.esiea.example.tvshow.mostPopular.data.dto
 
 
+import com.esiea.example.tvshow.mostPopular.domain.model.Reponse
 import com.google.gson.annotations.SerializedName
 
 data class ReponseDto(
@@ -11,5 +12,12 @@ data class ReponseDto(
     @SerializedName("total")
     val total: String,
     @SerializedName("tv_shows")
-    val tvShows: List<TvShow>
+    val tvShows: List<TvShowDto>
 )
+
+fun ReponseDto.toReponse():Reponse{
+    return Reponse(
+        page =page,
+        tvShows = tvShows
+    )
+}

@@ -7,7 +7,7 @@ plugins {
 
 android {
     namespace = "com.esiea.example.tvshow"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.esiea.example.tvshow"
