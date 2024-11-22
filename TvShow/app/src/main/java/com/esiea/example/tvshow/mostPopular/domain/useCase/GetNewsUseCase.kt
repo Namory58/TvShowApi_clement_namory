@@ -11,10 +11,11 @@ import java.io.IOException
 import javax.inject.Inject
 
 class GetNewsUseCase @Inject constructor(private val repository: NewsRepository){
-    suspend operator fun invoke(): Flow<Ressource<List<TvShow>>> = flow {
+    suspend operator fun invoke(page: Int): Flow<Ressource<List<TvShow>>> = flow {
         try {
             emit(Ressource.Loading<List<TvShow>>(isLoading = true))
-            val tvShows = repository.getTvShow().toReponse().tvShows.map { tvShow -> tvShow.toTvShow()}
+            val response = repository.getTvShow(page)
+            val tvShows = response.toReponse().tvShows.map { tvShow -> tvShow.toTvShow()}
             emit(Ressource.Success<List<TvShow>>(tvShows))
         } catch (e: IOException) {
             emit(Ressource.Error<List<TvShow>>(message = e.localizedMessage))

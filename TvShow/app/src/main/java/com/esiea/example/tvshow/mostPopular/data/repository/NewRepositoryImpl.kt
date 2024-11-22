@@ -7,7 +7,7 @@ import javax.inject.Inject
 
 class NewRepositoryImpl @Inject constructor (private val newApiService: NewApiService):
     NewsRepository {
-    override suspend fun getTvShow(): ReponseDto {
+    override suspend fun getTvShow(page: Int): ReponseDto {
         return newApiService.getMostPopularTvShows()
     }
 }
